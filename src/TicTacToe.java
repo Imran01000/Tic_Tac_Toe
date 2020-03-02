@@ -5,12 +5,17 @@ public class TicTacToe {
 	static int random=0;
 	static int randomCheck=0;
 	static String letter="";
-	static String checkToss="";
+	static int checkToss=0;
 	static int head=0;
 	static int tail=1;
-	
+	static String wonToss="";
+	static String lossToss="";
+	static int i=0;
+	static int j=0;
+	static int randomI=0;
+	static int randomJ=0;
 	//Declaring 2D array for getting board.
-	static int[][] arrayBoard=new int[3][3];
+	static char[][] arrayBoard=new char[3][3];
 	static Random r=new Random();
 	
 	//To generate random number.
@@ -32,42 +37,63 @@ public class TicTacToe {
 	}
 	
 	//To get the toss result.
-	private static String getToss() 
+	private static int getToss() 
 	{
 		randomCheck=getRandomNumber();
 		if(randomCheck==head)
 		{
-			return "You won the toss congratulations go ahead now....";
+			System.out.println("You won the toss congratulations go ahead now....");
+		    return 1;
 		}
 		else
 		{
-			return "You lost the toss wait for your turn.... ";
+			System.out.println("You lost the toss wait for your turn.... ");
+			return 0;
 		}
 	}		
 	
 	//To display array as board.
-	private static void arrayDisplay()
+	private static void arrayDisplay(char[][] arrayBoard)
 	{
 		for (int i = 0; i < arrayBoard.length; i++) 
 		{
 			for (int j = 0; j < arrayBoard.length; j++) 
 			{
-				System.out.print(arrayBoard[i][j]+" ");	
+				if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
+				{
+					System.out.print(arrayBoard[i][j]+" ");
+				}
+				else
+				{
+					System.out.print(0+" ");
+				}
 			}
 			System.out.println();
 		}
 	}
 	
+	private static void computerUser(int checkToss)
+	{
+		if(checkToss==0)
+		{
+			randomI=r.nextInt(3);
+			randomJ=r.nextInt(3);
+			i=randomI;
+			j=randomJ;
+			System.out.println(i);
+			System.out.println(j);
+			arrayBoard[i][j]='X';
+		}
+
+}
 	public static void main(String[] args)
 	{
-		arrayDisplay();
+		
 		letter=getLetter();
 		System.out.println(letter);
 		checkToss=getToss();
-		System.out.println(checkToss);
+		computerUser(checkToss);
+		arrayDisplay(arrayBoard);
 		
 	}
-
-	
-
 }
