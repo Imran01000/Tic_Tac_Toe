@@ -84,8 +84,17 @@ public class TicTacToe {
 			System.out.println(j);
 			arrayBoard[i][j]='X';
 		}
-
-}
+		else
+		{
+			randomI=r.nextInt(3);
+			randomJ=r.nextInt(3);
+			i=randomI;
+			j=randomJ;
+			System.out.println(i);
+			System.out.println(j);
+			arrayBoard[i][j]='O';
+		}
+	}
 	public static void main(String[] args)
 	{
 		
