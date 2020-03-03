@@ -221,7 +221,11 @@ public class TicTacToe {
 					computerUser();
 					checkToss=tail;
 					System.out.println();				
-				}	
+				}
+				if(n==7)
+				{
+					System.out.println("Game Tie!!!!!");
+				}
 				n++;	
 			}					
 	}
