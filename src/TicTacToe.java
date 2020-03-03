@@ -16,8 +16,10 @@ public class TicTacToe {
 	static int randomI=0;
 	static int randomJ=0;
 	static boolean isNotEmpty;
-	static int flag=0;
-		
+	static int userCount=0;
+	static int computerCount=0;
+	static boolean checkWin=false;
+	static boolean checkLoss=false;
 	//Declaring 2D array for getting board.
 	static char[][] arrayBoard=new char[3][3];
 	
@@ -83,7 +85,7 @@ public class TicTacToe {
 	}
 	
 	//To play computer user.
-	private static void computerUser()
+	private static boolean computerUser()
 	{
 		randomI=r.nextInt(3);
 		randomJ=r.nextInt(3);
@@ -92,48 +94,56 @@ public class TicTacToe {
 		System.out.println("Computer played");
 		if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
 		{
-			System.out.println("Already occupied this place sorry...");
+			//System.out.println("Already occupied this place sorry...");
 			computerUser();
 		}
 		else if(arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[1][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[1][2]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[2][0]=='O' && arrayBoard[2][1]=='O' && arrayBoard[2][2]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[0][0]=='O' && arrayBoard[1][0]=='O' && arrayBoard[2][0]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[0][1]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][1]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[0][2]=='O' && arrayBoard[1][2]=='O' && arrayBoard[2][2]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[0][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][2]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if(arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][0]=='O')
 		{
 			System.out.println("Computer won");
 			System.out.println("You lost");
+			checkLoss=true;
 		}
 		else if((arrayBoard[0][0]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[2][2]=='X')) 
 		{
@@ -149,7 +159,7 @@ public class TicTacToe {
 		}
 		else if((arrayBoard[0][2]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[2][0]=='X')) 
 		{
-			arrayBoard[1][1]='O';
+			arrayBoard[1][1]='O'; 
 		}
 		else if((arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[1][1]=='X')) 
 		{
@@ -231,17 +241,16 @@ public class TicTacToe {
 		{
 			arrayBoard[2][0]='O';
 		}
-		else
-		{
+	
 			arrayBoard[i][j]='O';
 			arrayDisplay(arrayBoard);
 			System.out.println();
-		}	
-		
+	
+		return checkLoss;
 	}
 	
 	//To play user.
-	private static void user()
+	private static boolean user()
 	{
 		System.out.println("Enter i and j values between (0 to 2 )to get cell postion");		
 		i=sc.nextInt();
@@ -255,48 +264,57 @@ public class TicTacToe {
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[1][0]=='X' && arrayBoard[1][1]=='X' && arrayBoard[1][2]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[2][0]=='X' && arrayBoard[2][1]=='X' && arrayBoard[2][2]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[0][0]=='X' && arrayBoard[1][0]=='X' && arrayBoard[2][0]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[0][1]=='X' && arrayBoard[1][1]=='X' && arrayBoard[2][1]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[0][2]=='X' && arrayBoard[1][2]=='X' && arrayBoard[2][2]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[0][0]=='X' && arrayBoard[1][1]=='X' && arrayBoard[2][2]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
 		else if(arrayBoard[0][2]=='X' && arrayBoard[1][1]=='X' && arrayBoard[2][0]=='X')
 		{
 			System.out.println("You won");
 			System.out.println("Computer loss");
+			checkWin=true;
 		}
-		else
-		{
+		
+	
 			arrayBoard[i][j]='X';
 			arrayDisplay(arrayBoard);
-			System.out.println();	
-		}
+			System.out.println();
+			
+		return checkWin;
 	}
 	
 	//Checking who won toss and begin.
@@ -312,7 +330,7 @@ public class TicTacToe {
 		}
 	}
 	
-	//Main method .
+	//Main method.
 	public static void main(String[] args)
 	{	
 			letter=getLetter();
@@ -325,17 +343,25 @@ public class TicTacToe {
 			{
 				if(checkToss==tail)
 				{
+					
 					user();
 					checkToss=head;
-					System.out.println();									
+					System.out.println();
+					userCount++;
+					if(checkWin==true)
+						break;
+					
 				}
 				else if(checkToss==head)
 				{
 					computerUser();
 					checkToss=tail;
-					System.out.println();				
+					System.out.println();
+					computerCount++;
+					if(checkLoss==true)
+						break;
 				}
-				else if(n==7)
+				else if(userCount==computerCount)
 				{
 					
 					System.out.println("Game Tie!!!!!");
