@@ -20,6 +20,7 @@ public class TicTacToe {
 	static int computerCount=0;
 	static boolean checkWin=false;
 	static boolean checkLoss=false;
+	
 	//Declaring 2D array for getting board.
 	static char[][] arrayBoard=new char[3][3];
 	
@@ -64,7 +65,7 @@ public class TicTacToe {
 	}	
 	
 	//To display array as board.
-	private static void arrayDisplay(char[][] arrayBorad)
+	private static void arrayDisplay(char[][] arrayBoard)
 	{
 		for (int i = 0; i < arrayBoard.length; i++) 
 		{
@@ -84,167 +85,199 @@ public class TicTacToe {
 		}
 	}
 	
+	private static void getCorners() 
+	{
+		randomCheck=r.nextInt(4)+1;
+		if(randomCheck==1)
+		{
+			arrayBoard[0][0]='O';
+		}
+		else if(randomCheck==2)
+		{
+			arrayBoard[0][2]='O';
+		}
+		else if(randomCheck==3)
+		{
+			arrayBoard[2][0]='O';
+		}
+		else if(randomCheck==4)
+		{
+			arrayBoard[2][2]='O';
+		}
+			
+		
+	}
 	//To play computer user.
 	private static boolean computerUser()
 	{
-		randomI=r.nextInt(3);
-		randomJ=r.nextInt(3);
-		i=randomI;
-		j=randomJ;
-		System.out.println("Computer played");
-		if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
+		 
+		if(arrayBoard[0][0]=='-' || arrayBoard[0][2]=='-' || arrayBoard[2][0]=='-' || arrayBoard[2][2]=='-')
 		{
-			//System.out.println("Already occupied this place sorry...");
-			computerUser();
-		}
-		else if(arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[1][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[1][2]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[2][0]=='O' && arrayBoard[2][1]=='O' && arrayBoard[2][2]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[0][0]=='O' && arrayBoard[1][0]=='O' && arrayBoard[2][0]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[0][1]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][1]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[0][2]=='O' && arrayBoard[1][2]=='O' && arrayBoard[2][2]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[0][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][2]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if(arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][0]=='O')
-		{
-			System.out.println("Computer won");
-			System.out.println("You lost");
-			checkLoss=true;
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[1][1]='O';
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[1][1]=='X')) 
-		{
-			arrayBoard[2][2]='O';
-		}
-		else if((arrayBoard[1][1]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[0][0]='O';
-		}
-		else if((arrayBoard[0][2]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[2][0]=='X')) 
-		{
-			arrayBoard[1][1]='O'; 
-		}
-		else if((arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[1][1]=='X')) 
-		{
-			arrayBoard[2][0]='O';
-		}
-		else if((arrayBoard[2][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[1][1]=='X')) 
-		{
-			arrayBoard[0][2]='O';
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[2][0]=='X')) 
-		{
-			arrayBoard[1][0]='O';
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[1][0]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[1][0]=='X')) 
-		{
-			arrayBoard[2][0]='O';
-		}
-		else if((arrayBoard[1][0]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[2][0]=='X')) 
-		{
-			arrayBoard[0][0]='O';
-		}
-		else if((arrayBoard[0][1]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[2][1]=='X')) 
-		{
-			arrayBoard[1][1]='O';
-		}
-		else if((arrayBoard[1][1]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[2][1]=='X')) 
-		{
-			arrayBoard[0][1]='O';
-		}
-		else if((arrayBoard[0][1]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[1][1]=='X')) 
-		{
-			arrayBoard[2][1]='O';
-		}
-		else if((arrayBoard[0][2]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[1][2]='O';
-		}
-		else if((arrayBoard[0][2]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[1][2]=='X')) 
-		{
-			arrayBoard[2][2]='O';
-		}
-		else if((arrayBoard[1][2]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[1][2]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[0][2]='O';
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[0][2]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[0][2]=='X')) 
-		{
-			arrayBoard[0][1]='O';
-		}
-		else if((arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[0][1]=='X')) 
-		{
-			arrayBoard[0][2]='O';
-		}
-		else if((arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[0][2]=='X')) 
-		{
-			arrayBoard[0][0]='O';
-		}
-		else if((arrayBoard[1][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[1][1]=='X')) 
-		{
-			arrayBoard[1][2]='O';
-		}
-		else if((arrayBoard[1][1]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[1][2]=='X')) 
-		{
-			arrayBoard[1][0]='O';
-		}
-		else if((arrayBoard[1][0]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[1][2]=='X')) 
-		{
-			arrayBoard[1][1]='O';
-		}
-		else if((arrayBoard[2][0]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[2][1]=='X')) 
-		{
-			arrayBoard[2][2]='O';
-		}
-		else if((arrayBoard[2][0]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[2][1]='O';
-		}
-		else if((arrayBoard[2][1]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[2][1]=='X' && arrayBoard[2][2]=='X')) 
-		{
-			arrayBoard[2][0]='O';
-		}
-	
-			arrayBoard[i][j]='O';
+			getCorners();
 			arrayDisplay(arrayBoard);
-			System.out.println();
+		}
+		else
+		{	
+			randomI=r.nextInt(3);
+			randomJ=r.nextInt(3);
+			i=randomI;
+			j=randomJ;
+			System.out.println("Computer played");
+			if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
+			{
+				//System.out.println("Already occupied this place sorry...");
+				computerUser();
+			}
+			else if(arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[1][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[1][2]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[2][0]=='O' && arrayBoard[2][1]=='O' && arrayBoard[2][2]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[0][0]=='O' && arrayBoard[1][0]=='O' && arrayBoard[2][0]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[0][1]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][1]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+			
+				checkLoss=true;
+			}
+			else if(arrayBoard[0][2]=='O' && arrayBoard[1][2]=='O' && arrayBoard[2][2]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[0][0]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][2]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if(arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O' && arrayBoard[2][0]=='O')
+			{
+				System.out.println("Computer won");
+				System.out.println("You lost");
+				checkLoss=true;
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[1][1]='O';
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[1][1]=='X')) 
+			{
+				arrayBoard[2][2]='O';
+			}
+			else if((arrayBoard[1][1]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[0][0]='O';
+			}
+			else if((arrayBoard[0][2]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[2][0]=='X')) 
+			{
+				arrayBoard[1][1]='O'; 
+			}
+			else if((arrayBoard[0][2]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[1][1]=='X')) 
+			{
+				arrayBoard[2][0]='O';
+			}
+			else if((arrayBoard[2][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[1][1]=='X')) 
+			{
+				arrayBoard[0][2]='O';
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[2][0]=='X')) 
+			{
+				arrayBoard[1][0]='O';
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[1][0]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[1][0]=='X')) 
+			{
+				arrayBoard[2][0]='O';
+			}
+			else if((arrayBoard[1][0]=='O' && arrayBoard[2][0]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[2][0]=='X')) 
+			{
+				arrayBoard[0][0]='O';
+			}
+			else if((arrayBoard[0][1]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[2][1]=='X')) 
+			{
+				arrayBoard[1][1]='O';
+			}
+			else if((arrayBoard[1][1]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[2][1]=='X')) 
+			{
+				arrayBoard[0][1]='O';
+			}
+			else if((arrayBoard[0][1]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[1][1]=='X')) 
+			{
+				arrayBoard[2][1]='O';
+			}
+			else if((arrayBoard[0][2]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[1][2]='O';
+			}
+			else if((arrayBoard[0][2]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[0][2]=='X' && arrayBoard[1][2]=='X')) 
+			{
+				arrayBoard[2][2]='O';
+			}
+			else if((arrayBoard[1][2]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[1][2]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[0][2]='O';
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[0][2]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[0][2]=='X')) 
+			{
+				arrayBoard[0][1]='O';
+			}
+			else if((arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O') || (arrayBoard[0][0]=='X' && arrayBoard[0][1]=='X')) 
+			{
+				arrayBoard[0][2]='O';
+			}
+			else if((arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O') || (arrayBoard[0][1]=='X' && arrayBoard[0][2]=='X')) 
+			{
+				arrayBoard[0][0]='O';
+			}
+			else if((arrayBoard[1][0]=='O' && arrayBoard[1][1]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[1][1]=='X')) 
+			{
+				arrayBoard[1][2]='O';
+			}
+			else if((arrayBoard[1][1]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[1][1]=='X' && arrayBoard[1][2]=='X')) 
+			{
+				arrayBoard[1][0]='O';
+			}
+			else if((arrayBoard[1][0]=='O' && arrayBoard[1][2]=='O') || (arrayBoard[1][0]=='X' && arrayBoard[1][2]=='X')) 
+			{
+				arrayBoard[1][1]='O';
+			}
+			else if((arrayBoard[2][0]=='O' && arrayBoard[2][1]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[2][1]=='X')) 
+			{
+				arrayBoard[2][2]='O';
+			}
+			else if((arrayBoard[2][0]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[2][0]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[2][1]='O';
+			}
+			else if((arrayBoard[2][1]=='O' && arrayBoard[2][2]=='O') || (arrayBoard[2][1]=='X' && arrayBoard[2][2]=='X')) 
+			{
+				arrayBoard[2][0]='O';
+			}
+		
+				arrayBoard[i][j]='O';
+				arrayDisplay(arrayBoard);
+				System.out.println();
+		}
 	
 		return checkLoss;
 	}
@@ -343,23 +376,25 @@ public class TicTacToe {
 			{
 				if(checkToss==tail)
 				{
-					
+					if(checkWin==true)
+						break;
+	
 					user();
 					checkToss=head;
 					System.out.println();
 					userCount++;
-					if(checkWin==true)
-						break;
 					
 				}
 				else if(checkToss==head)
 				{
+					if(checkLoss==true)
+						break; 
+				
 					computerUser();
 					checkToss=tail;
 					System.out.println();
 					computerCount++;
-					if(checkLoss==true)
-						break;
+					
 				}
 				else if(userCount==computerCount)
 				{
