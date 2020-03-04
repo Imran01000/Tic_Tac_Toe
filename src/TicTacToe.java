@@ -15,7 +15,6 @@ public class TicTacToe {
 	static int j=0;
 	static int randomI=0;
 	static int randomJ=0;
-	static boolean isNotEmpty;
 	static int userCount=0;
 	static int computerCount=0;
 	static boolean checkWin=false;
@@ -33,8 +32,7 @@ public class TicTacToe {
 	//To generate random number.;
 	private static int getRandomNumber() {
 		random=r.nextInt(2);
-		return random;
-		
+		return random;	
 	}
 	
 	//To know the letter X or O is assign to me.
@@ -65,7 +63,7 @@ public class TicTacToe {
 	}	
 	
 	//To display array as board.
-	private static void arrayDisplay(char[][] arrayBoard)
+	private static void arrayDisplay()
 	{
 		for (int i = 0; i < arrayBoard.length; i++) 
 		{
@@ -85,9 +83,10 @@ public class TicTacToe {
 		}
 	}
 	
-	private static void getCorners() 
+	
+	static void getCorner()
 	{
-		randomCheck=r.nextInt(4)+1;
+		randomCheck=r.nextInt(5)+1;
 		if(randomCheck==1)
 		{
 			arrayBoard[0][0]='O';
@@ -104,28 +103,27 @@ public class TicTacToe {
 		{
 			arrayBoard[2][2]='O';
 		}
-			
-		
+		else if(randomCheck==5)
+		{
+			arrayBoard[1][1]='O';
+		}
 	}
+	
 	//To play computer user.
 	private static boolean computerUser()
 	{
-		 
-		if(arrayBoard[0][0]=='-' || arrayBoard[0][2]=='-' || arrayBoard[2][0]=='-' || arrayBoard[2][2]=='-')
-		{
-			getCorners();
-			arrayDisplay(arrayBoard);
-		}
-		else
-		{	
-			randomI=r.nextInt(3);
-			randomJ=r.nextInt(3);
-			i=randomI;
-			j=randomJ;
-			System.out.println("Computer played");
-			if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
+		randomI=r.nextInt(3);
+		randomJ=r.nextInt(3);	
+		i=randomI;
+		j=randomJ;
+		
+			if(arrayBoard[0][0]=='-' || arrayBoard[0][2]=='-' || arrayBoard[2][0]=='-' || arrayBoard[2][2]=='-' || arrayBoard[1][1]=='-')
 			{
-				//System.out.println("Already occupied this place sorry...");
+				getCorner();
+			
+			}
+			else if(arrayBoard[i][j]=='X' || arrayBoard[i][j]=='O')
+			{
 				computerUser();
 			}
 			else if(arrayBoard[0][0]=='O' && arrayBoard[0][1]=='O' && arrayBoard[0][2]=='O')
@@ -273,12 +271,12 @@ public class TicTacToe {
 			{
 				arrayBoard[2][0]='O';
 			}
-		
+			else if(arrayBoard[0][0]!='-' || arrayBoard[0][2]!='-' || arrayBoard[2][0]!='-' || arrayBoard[2][2]!='-')
+			{
 				arrayBoard[i][j]='O';
-				arrayDisplay(arrayBoard);
-				System.out.println();
-		}
-	
+			}	
+			arrayDisplay();
+			System.out.println();
 		return checkLoss;
 	}
 	
@@ -341,12 +339,12 @@ public class TicTacToe {
 			System.out.println("Computer loss");
 			checkWin=true;
 		}
-		
-	
+		else
+		{
 			arrayBoard[i][j]='X';
-			arrayDisplay(arrayBoard);
+			arrayDisplay();
 			System.out.println();
-			
+		}		
 		return checkWin;
 	}
 	
@@ -366,6 +364,7 @@ public class TicTacToe {
 	//Main method.
 	public static void main(String[] args)
 	{	
+			arrayDisplay();
 			letter=getLetter();
 			System.out.println(letter);
 			checkToss=getToss();
@@ -376,25 +375,22 @@ public class TicTacToe {
 			{
 				if(checkToss==tail)
 				{
-					if(checkWin==true)
-						break;
-	
 					user();
-					checkToss=head;
 					System.out.println();
 					userCount++;
-					
+					checkToss=head;
+					if(checkWin==true)
+						break;
 				}
-				else if(checkToss==head)
-				{
-					if(checkLoss==true)
-						break; 
 				
+				if(checkToss==head)
+				{   
 					computerUser();
-					checkToss=tail;
 					System.out.println();
 					computerCount++;
-					
+					checkToss=tail;
+					if(checkLoss==true)
+						break;
 				}
 				else if(userCount==computerCount)
 				{
